@@ -12,8 +12,7 @@ import requests
 from dotenv import load_dotenv
 
 # 조회할 종목코드. 지금은 여기 직접 적어 두고, 나중에 파일에서 읽어오도록 바꾼다.
-STOCK_CODE = "005930"  # 삼성전자
-STOCK_CODE1 = "095660"  # 네오위즈
+STOCK_CODE = "095660"  # 삼성전자
 
 load_dotenv()
 
@@ -116,14 +115,14 @@ def format_rate_badge(price: int, rate: float) -> str:
     return f"{prefix} ▫️ 0.0%"
 
 
-info = fetch_naver_current_price(STOCK_CODE1)
+info = fetch_naver_current_price(STOCK_CODE)
 
 if info is None:
     print("❌ 현재가를 가져오지 못했습니다. 네이버 API 상태를 확인해 주세요.")
 else:
     # 두 줄짜리 메시지: 첫 줄은 이름과 종목코드, 둘째 줄은 4칸 들여쓴 가격·등락.
     telegram_message = (
-        f"📈 {info['name']} ({STOCK_CODE1})"
+        f"📈 {info['name']} ({STOCK_CODE})"
         f"\n    {format_rate_badge(info['price'], info['rate'])}"
     )
 
